@@ -9,5 +9,7 @@ git pull origin master
 git log -1
 date
 git status
+ls ./config/nginx/certs/
+chmod +x run.sh
 ./run.sh
 EOF
