@@ -14,8 +14,9 @@ services:
       - "/usr/share/nginx/html"
       - "./config/nginx/certs:/etc/nginx/certs:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-    networks:
-      - proxy-tier
+    # networks:
+    #   - proxy-tier
+    network_mode: "bridge"
   nginx-gen:
     restart: always
     image: jwilder/docker-gen
@@ -46,14 +47,13 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
       - VIRTUAL_HOST=docker.aws3.yongbuzhixi.com
-      - VIRTUAL_NETWORK=nginx-proxy
-      - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=docker.aws3.yongbuzhixi.com
       - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
-    networks:
-      - proxy-tier
+    # networks:
+    #   - proxy-tier
+    network_mode: "bridge"
 
-networks:
-  proxy-tier:
-    external:
-      name: nginx-proxy
+# networks:
+#   proxy-tier:
+#     external:
+#       name: nginx-proxy
