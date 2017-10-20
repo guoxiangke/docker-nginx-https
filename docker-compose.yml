@@ -46,8 +46,8 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
-      - VIRTUAL_HOST=docker.aws3.yongbuzhixi.com
-      - LETSENCRYPT_HOST=docker.aws3.yongbuzhixi.com
+      - VIRTUAL_HOST=docker.bce.yongbuzhixi.com
+      - LETSENCRYPT_HOST=docker.bce.yongbuzhixi.com
       - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     # networks:
     #   - proxy-tier
