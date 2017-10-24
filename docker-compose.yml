@@ -2,7 +2,7 @@ version: "2"
 
 services:
   nginx:
-    image: nginx
+    image: nginx-amplify
     restart: always
     container_name: nginx
     ports:
@@ -17,6 +17,9 @@ services:
     # networks:
     #   - proxy-tier
     network_mode: "bridge"
+    environment:
+      - API_KEY=18bc6b09f62c0f6cc6b3648d3b1c388b
+      - AMPLIFY_IMAGENAME=nginx-amplify
   nginx-gen:
     restart: always
     image: jwilder/docker-gen
