@@ -13,6 +13,7 @@ services:
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
       - "./config/nginx/certs:/etc/nginx/certs:ro"
+      - "./config/nginx/amplify.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
     # networks:
     #   - proxy-tier
