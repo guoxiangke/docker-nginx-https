@@ -60,6 +60,20 @@ services:
     #   - proxy-tier
     network_mode: "bridge"
 
+  nginx-goaccess:
+    restart: always
+    # build: https://github.com/allinurl/goaccess.git
+    image: allinurl/goaccess
+    container_name: nginx-goaccess
+    volumes:
+      - "./config/goaccess/data:/srv/data"
+      - "./config/goaccess/html:/srv/report"
+      - "./config/nginx/logs:/srv/logs"
+    environment:
+      - VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
+      - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
+      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+    network_mode: "bridge"
 # networks:
 #   proxy-tier:
 #     external:
