@@ -58,20 +58,20 @@ services:
       - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     network_mode: "bridge"
 
-  nginx-goaccess:
+  goaccess:
     restart: always
     # build: https://github.com/allinurl/goaccess.git
     image: allinurl/goaccess
-    container_name: nginx-goaccess
+    container_name: goaccess
     volumes:
       - "./config/goaccess/data:/srv/data"
       - "./config/goaccess/html:/srv/report"
       - "./config/nginx/logs:/srv/logs"
     network_mode: "bridge"
-  web-goaccess:
+  nginx-goaccess:
     restart: always
     image: nginx
-    container_name: web-goaccess
+    container_name: nginx-goaccess
     volumes:
       - "./config/goaccess/html:/usr/share/nginx/html"
     environment:
