@@ -17,7 +17,7 @@ services:
       # - "./config/nginx/proxy/amplify.conf:/etc/nginx/conf.d/amplify.conf"
       - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-      - "./config/logs:/var/log/nginx:rw"
+      - "./config/logs/:/var/log/nginx/:rw"
     # networks:
     #   - proxy-tier
     network_mode: "bridge"
