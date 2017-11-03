@@ -73,7 +73,7 @@ services:
       - "./config/goaccess/data:/srv/data"
       - "./config/goaccess/html:/srv/report"
       - "./config/nginx/logs:/srv/logs"
-    environment:
+    # environment:
       #- VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
       #- LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
       #- LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
