@@ -8,6 +8,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "7890:7890"
     volumes:
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
@@ -63,8 +64,6 @@ services:
     # build: https://github.com/allinurl/goaccess.git
     image: allinurl/goaccess
     container_name: goaccess
-    ports:
-      - "7890:7890"
     volumes_from:
       - a-nginx
     environment:
@@ -84,8 +83,8 @@ services:
       - "./config/goaccess/html:/usr/share/nginx/html"
     environment:
       - VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
-      # - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
-      # - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+      - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
+      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     network_mode: "bridge"
 
 # networks:
