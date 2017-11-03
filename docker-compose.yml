@@ -11,7 +11,7 @@ services:
     volumes:
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
-      - "/usr/share/nginx/html"
+      - "./config/goaccess/html:/usr/share/nginx/html"
       - "./config/nginx/certs:/etc/nginx/certs:ro"
       - "./config/nginx/nginx.conf:/etc/nginx/nginx.conf"
       # - "./config/nginx/proxy/amplify.conf:/etc/nginx/conf.d/amplify.conf"
@@ -24,6 +24,9 @@ services:
     environment:
       - API_KEY=18bc6b09f62c0f6cc6b3648d3b1c388b
       - AMPLIFY_IMAGENAME=nginx-amplify
+      - VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
+      - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
+      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
   nginx-gen:
     restart: always
     image: jwilder/docker-gen
@@ -70,9 +73,9 @@ services:
       - "./config/goaccess/html:/srv/report"
       - "./config/nginx/logs:/srv/logs"
     environment:
-      - VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
-      - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
-      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+      #- VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
+      #- LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
+      #- LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     network_mode: "bridge"
 # networks:
 #   proxy-tier:
