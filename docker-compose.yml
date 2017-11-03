@@ -1,10 +1,10 @@
 version: "2"
 
 services:
-  nginx:
+  a-nginx:
     image: nginx-amplify
     restart: always
-    container_name: nginx
+    container_name: a-nginx
     ports:
       - "80:80"
       - "443:443"
