@@ -69,8 +69,8 @@ services:
       - a-nginx
     environment:
       - VIRTUAL_HOST=wss.bce.yongbuzhixi.com
-      - LETSENCRYPT_HOST=wss.bce.yongbuzhixi.com
-      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+      # - LETSENCRYPT_HOST=wss.bce.yongbuzhixi.com
+      # - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     volumes:
       - "./config/goaccess/data:/srv/data"
       - "./config/goaccess/html:/srv/report"
@@ -84,8 +84,8 @@ services:
       - "./config/goaccess/html:/usr/share/nginx/html"
     environment:
       - VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
-      - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
-      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+      # - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
+      # - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     network_mode: "bridge"
 
 # networks:
