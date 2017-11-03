@@ -1,10 +1,10 @@
 version: "2"
 
 services:
-  a-nginx:
+  nginx:
     image: nginx-amplify
     restart: always
-    container_name: a-nginx
+    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
@@ -15,9 +15,9 @@ services:
       - "./config/nginx/certs:/etc/nginx/certs:ro"
       # - "./config/nginx/nginx.conf:/etc/nginx/nginx.conf"
       # - "./config/nginx/proxy/amplify.conf:/etc/nginx/conf.d/amplify.conf"
-      - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf"
+      - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-      - "./config/nginx/logs:/var/log/nginx"
+      - "./config/nginx/logs:/var/log/nginx:rw"
     # networks:
     #   - proxy-tier
     network_mode: "bridge"
@@ -32,14 +32,14 @@ services:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "./config/docker-gen/templates/nginx-compose-v2.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro"
     volumes_from:
-      - a-nginx
+      - nginx
     entrypoint: /usr/local/bin/docker-gen -notify-sighup nginx -watch -only-exposed -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
   letsencrypt-nginx-proxy-companion:
     restart: always
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: letsencrypt-nginx-proxy-companion
     volumes_from:
-      - a-nginx
+      - nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./config/nginx/certs:/etc/nginx/certs:rw"
