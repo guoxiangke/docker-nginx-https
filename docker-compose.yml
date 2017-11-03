@@ -63,6 +63,8 @@ services:
     # build: https://github.com/allinurl/goaccess.git
     image: allinurl/goaccess
     container_name: goaccess
+    ports:
+      - "7890:7890"
     volumes_from:
       - a-nginx
     volumes:
