@@ -63,6 +63,8 @@ services:
     # build: https://github.com/allinurl/goaccess.git
     image: allinurl/goaccess
     container_name: goaccess
+    volumes_from:
+      - a-nginx
     volumes:
       - "./config/goaccess/data:/srv/data"
       - "./config/goaccess/html:/srv/report"
