@@ -32,7 +32,7 @@ services:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "./config/docker-gen/templates/nginx-compose-v2.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro"
     volumes_from:
-      - nginx
+      - a-nginx
     entrypoint: /usr/local/bin/docker-gen -notify-sighup nginx -watch -only-exposed -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
   letsencrypt-nginx-proxy-companion:
     restart: always
