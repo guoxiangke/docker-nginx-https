@@ -67,6 +67,10 @@ services:
       - "7890:7890"
     volumes_from:
       - a-nginx
+    environment:
+      - VIRTUAL_HOST=wss.bce.yongbuzhixi.com
+      - LETSENCRYPT_HOST=wss.bce.yongbuzhixi.com
+      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     volumes:
       - "./config/goaccess/data:/srv/data"
       - "./config/goaccess/html:/srv/report"
