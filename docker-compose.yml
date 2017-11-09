@@ -8,7 +8,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "7890:7890"
     volumes:
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
@@ -91,6 +90,18 @@ services:
       - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     network_mode: "bridge"
 
+  a-grafana:
+    restart: always
+    image: grafana/grafana
+    container_name: a-grafana
+    volumes:
+      - "./config/grafana:/var/lib/grafana"
+    environment:
+      - VIRTUAL_HOST=grafana.bce.yongbuzhixi.com
+      - LETSENCRYPT_HOST=grafana.bce.yongbuzhixi.com
+      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel
+    network_mode: "bridge"
 # networks:
 #   proxy-tier:
 #     external:
