@@ -1,12 +1,13 @@
 #! /bin/bash
 pwd
-git pull origin bce
-git push origin bce
+git checkout master
+git pull origin master
+git push origin master
 ssh root@bce.yongbuzhixi.com<< EOF
 cd ~/docker/docker-nginx-https
 git log -1
 git pull
-git checkout bce
+git checkout master
 git log -1
 git status
 chmod +x run.sh
