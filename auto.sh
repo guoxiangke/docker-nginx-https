@@ -9,7 +9,6 @@ git pull
 git checkout bce
 git log -1
 git status
-ls ./config/nginx/certs/
 chmod +x run.sh
 ./run.sh
 EOF

@@ -45,18 +45,18 @@ services:
       - "./config/nginx/certs:/etc/nginx/certs:rw"
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
-
-  containers-manager:
-    restart: always
-    image: portainer/portainer 
-    container_name: containers-manager
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    environment:
-      - VIRTUAL_HOST=docker.bce.yongbuzhixi.com
-      - LETSENCRYPT_HOST=docker.bce.yongbuzhixi.com
-      - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
-    network_mode: "bridge"
+      
+  # containers-manager:
+  #   restart: always
+  #   image: portainer/portainer 
+  #   container_name: containers-manager
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
+  #   environment:
+  #     - VIRTUAL_HOST=docker.bce.yongbuzhixi.com
+  #     - LETSENCRYPT_HOST=docker.bce.yongbuzhixi.com
+  #     - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
+  #   network_mode: "bridge"
 
   # goaccess:
   #   restart: always
