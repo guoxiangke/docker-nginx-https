@@ -1,9 +1,9 @@
 #! /bin/bash
 pwd
-git pull origin master
-git push origin master
-ssh root@bce.yongbuzhixi.com<< EOF
-cd ~/docker/docker-nginx-https
+git pull origin pi
+git push origin pi
+ssh pi@frp.yongbuzhixi.com -p 7722 << EOF
+cd /home/pi/docker-nginx-https
 git log -1
 git pull origin master
 git checkout master

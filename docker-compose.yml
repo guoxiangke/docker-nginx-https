@@ -2,7 +2,7 @@ version: "2"
 
 services:
   a-nginx:
-    image: nginx-amplify
+    image: nginx
     restart: always
     container_name: a-nginx
     ports:
@@ -13,17 +13,10 @@ services:
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
       - "./config/nginx/certs:/etc/nginx/certs:ro"
-      # - "./config/nginx/nginx.conf:/etc/nginx/nginx.conf"
-      # - "./config/nginx/proxy/amplify.conf:/etc/nginx/conf.d/amplify.conf"
       - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
       - "./config/nginx/logs:/var/log/nginx:rw"
-    # networks:
-    #   - proxy-tier
     network_mode: "bridge"
-    environment:
-      - API_KEY=18bc6b09f62c0f6cc6b3648d3b1c388b
-      - AMPLIFY_IMAGENAME=nginx-amplify
   nginx-gen:
     restart: always
     image: jwilder/docker-gen
@@ -45,64 +38,3 @@ services:
       - "./config/nginx/certs:/etc/nginx/certs:rw"
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
-      
-  # containers-manager:
-  #   restart: always
-  #   image: portainer/portainer 
-  #   container_name: containers-manager
-  #   volumes:
-  #     - "/var/run/docker.sock:/var/run/docker.sock"
-  #   environment:
-  #     - VIRTUAL_HOST=docker.bce.yongbuzhixi.com
-  #     - LETSENCRYPT_HOST=docker.bce.yongbuzhixi.com
-  #     - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
-  #   network_mode: "bridge"
-
-  # goaccess:
-  #   restart: always
-  #   # build: https://github.com/allinurl/goaccess.git
-  #   image: allinurl/goaccess
-  #   container_name: goaccess
-  #   expose: 
-  #     - 7890
-  #   # ports:
-  #   #   - "7890:7890"
-  #   volumes_from:
-  #     - a-nginx
-  #   environment:
-  #     - VIRTUAL_HOST=wss.bce.yongbuzhixi.com
-  #     # - LETSENCRYPT_HOST=wss.bce.yongbuzhixi.com
-  #     # - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
-  #   volumes:
-  #     - "./config/goaccess/data:/srv/data"
-  #     - "./config/goaccess/html:/srv/report"
-  #     - "./config/nginx/logs:/srv/logs"
-  #   network_mode: "bridge"
-  # nginx-goaccess:
-  #   restart: always
-  #   image: nginx
-  #   container_name: nginx-goaccess
-  #   volumes:
-  #     - "./config/goaccess/html:/usr/share/nginx/html"
-  #   environment:
-  #     - VIRTUAL_HOST=goaccess.bce.yongbuzhixi.com
-  #     - LETSENCRYPT_HOST=goaccess.bce.yongbuzhixi.com
-  #     - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
-  #   network_mode: "bridge"
-
-  # a-grafana:
-  #   restart: always
-  #   image: grafana/grafana
-  #   container_name: a-grafana
-  #   volumes:
-  #     - "./config/grafana:/var/lib/grafana"
-  #   environment:
-  #     - VIRTUAL_HOST=grafana.bce.yongbuzhixi.com
-  #     - LETSENCRYPT_HOST=grafana.bce.yongbuzhixi.com
-  #     - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
-  #     - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-piechart-panel
-  #   network_mode: "bridge"
-# networks:
-#   proxy-tier:
-#     external:
-#       name: nginx-proxy
