@@ -46,7 +46,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
-      - VIRTUAL_HOST=docker.aws2.yongbuzhixi.com
-      - LETSENCRYPT_HOST=docker.aws2.yongbuzhixi.com
+      - VIRTUAL_HOST=docker.aws.yongbuzhixi.com
+      - LETSENCRYPT_HOST=docker.aws.yongbuzhixi.com
       - LETSENCRYPT_EMAIL=dale@yongbuzhixi.com
     network_mode: "bridge"
