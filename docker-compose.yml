@@ -16,6 +16,7 @@ services:
       - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
       - "./config/nginx/logs:/var/log/nginx:rw"
+      - "./config/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf"
     network_mode: "bridge"
   
   nginx-gen:
@@ -26,7 +27,7 @@ services:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "./config/docker-gen/templates/nginx-compose-v2.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro"
     volumes_from:
-      - a-nginx
+      - nginx
     entrypoint: /usr/local/bin/docker-gen -notify-sighup nginx -watch -only-exposed -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
   
   letsencrypt-nginx-proxy-companion:
@@ -34,7 +35,7 @@ services:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: a-letsencrypt-nginx-proxy-companion
     volumes_from:
-      - a-nginx
+      - nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./config/nginx/certs:/etc/nginx/certs:rw"

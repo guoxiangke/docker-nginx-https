@@ -177,6 +177,9 @@ server {
     {{ end }}
 
     location / {
+        real_ip_header X-Real-IP;
+        real_ip_recursive on;
+        ###https://www.nat.ee/course/96.html
         proxy_pass {{ trim $proto }}://{{ trim $host }};
         {{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
         auth_basic  "Restricted {{ $host }}";
@@ -203,6 +206,9 @@ server {
     {{ end }}
 
     location / {
+        real_ip_header X-Real-IP;
+        real_ip_recursive on;
+        ###https://www.nat.ee/course/96.html
         proxy_pass {{ trim $proto }}://{{ trim $host }};
         {{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
         auth_basic  "Restricted {{ $host }}";

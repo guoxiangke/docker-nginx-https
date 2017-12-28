@@ -1,2 +1,3 @@
 config/nginx/certs/
 config/nginx/logs/
+.DS_Store
