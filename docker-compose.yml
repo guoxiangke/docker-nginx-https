@@ -9,6 +9,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - "./config/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro"
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
@@ -16,7 +17,6 @@ services:
       - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
       - "./config/nginx/logs:/var/log/nginx:rw"
-      - "./config/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf"
     network_mode: "bridge"
   
   nginx-gen:
