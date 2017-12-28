@@ -12,7 +12,7 @@ services:
       - "./config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
       # - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d" #for letsencrypt
-      # - "/usr/share/nginx/html"
+      - "/usr/share/nginx/html" #for letsencrypt
       - "./config/nginx/certs:/etc/nginx/certs:rw"
       - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
