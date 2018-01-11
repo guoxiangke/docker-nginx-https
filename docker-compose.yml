@@ -10,15 +10,15 @@ services:
       - "443:443"
     volumes:
       - "./config/nginx/frp.nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./config/nginx/conf.d/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
       - "/etc/nginx/conf.d"
-      - "./config/nginx/proxy/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-      - "./config/nginx/proxy/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
+      - "./config/nginx/conf.d/stub_status.conf:/etc/nginx/conf.d/stub_status.conf:ro"
       - "/etc/nginx/vhost.d" #for letsencrypt
-      - "./config/nginx/frp.conf:/etc/nginx/vhost.d/frp.conf:ro"
+      - "./config/nginx/vhost.d/frp.conf:/etc/nginx/vhost.d/frp.conf:ro"
       - "/usr/share/nginx/html" #for letsencrypt
       - "./config/nginx/certs:/etc/nginx/certs"
       - "./config/nginx/logs:/var/log/nginx"
-    # network_mode: "bridge"
+    network_mode: "bridge"
   
   nginx-gen:
     restart: always
