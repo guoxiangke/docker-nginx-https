@@ -17,7 +17,7 @@ services:
       - "./config/nginx/vhost.d/frp.conf:/etc/nginx/vhost.d/frp.conf:ro"
       - "/usr/share/nginx/html" #for letsencrypt
       - "./config/nginx/certs:/etc/nginx/certs"
-      - "./config/nginx/logs:/var/log/nginx"
+      - "/var/log/nginx:/var/log/nginx" #mkdir -pv /var/log/nginx
     network_mode: "bridge"
   
   nginx-gen:
